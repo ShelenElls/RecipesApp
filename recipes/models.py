@@ -36,12 +36,8 @@ class Ingredient(models.Model):
     recipe = models.ForeignKey(
         "Recipe", related_name="ingredients", on_delete=models.CASCADE
     )
-    measure = models.ForeignKey(
-        "Measure", on_delete=models.PROTECT
-    )
-    food = models.ForeignKey(
-        "FoodItem", on_delete=models.PROTECT
-    )
+    measure = models.ForeignKey("Measure", on_delete=models.PROTECT)
+    food = models.ForeignKey("FoodItem", on_delete=models.PROTECT)
 
     def __str__(self):
         return self.author
@@ -53,6 +49,8 @@ class Step(models.Model):
     )
     order = models.PositiveSmallIntegerField(())
     directions = models.CharField(max_length=300)
+
+    food_items = models.ManyToManyField("FoodItem", null=True, blank=True)
 
     def __str__(self):
         return self.author
