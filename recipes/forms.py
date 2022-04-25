@@ -1,5 +1,4 @@
 from django import forms
-from recipes.models import Rating
 
 try:
     from recipes.models import Recipe
@@ -16,6 +15,9 @@ try:
 
 except Exception:
     pass
+
+
+from recipes.models import Rating
 
 
 class RatingForm(forms.ModelForm):
