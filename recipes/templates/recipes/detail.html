@@ -20,6 +20,9 @@
           <a href="{% url 'home' %}">Scrumptious</a>
         </li>
         <li>
+          <a href="{% url 'tags_list' %}">Tags</a>
+        </li>
+        <li>
           <a href="{% url 'admin:index' %}">Admin</a>
         </li>
         <li>
@@ -34,7 +37,7 @@
       <a href="{% url 'recipe_delete' recipe.id %}">Delete</a>
     </div>
     {% if recipe.image %}
-    <img src="{{ recipe.image }}" class="pull-right">
+      <img src="{{ recipe.image }}" class="pull-right">
     {% endif %}
     <h1>{{ recipe.name }}</h1>
     <p>
@@ -43,8 +46,10 @@
     </p>
     <form method="post" action="{% url 'recipe_rating' recipe.id %}">
       {% csrf_token %}
-      {{ rating_form.as_p }}
-      <button class="button">Rate</button>
+      <div class="rating-form-grid">
+        {{ rating_form.as_p }}
+        <button class="button">Rate</button>
+      </div>
     </form>
     <p>Tags: {% for tag in recipe.tags.all %}{{ tag.word }} {% endfor %}</p>
     {{ recipe.description | markdownify }}
@@ -58,18 +63,18 @@
       </thead>
       <tbody>
         {% for ingredient in recipe.ingredients.all %}
-        <tr>
-          <td>{{ ingredient.amount }}</td>
-          <td>{{ ingredient.measure.name }}</td>
-          <td>{{ ingredient.food.name }}</td>
-        </tr>
+          <tr>
+            <td>{{ ingredient.amount }}</td>
+            <td>{{ ingredient.measure.name }}</td>
+            <td>{{ ingredient.food.name }}</td>
+          </tr>
         {% endfor %}
       </tbody>
     </table>
     <h2>Steps</h2>
     <ol>
       {% for step in recipe.steps.all %}
-      <li>{{ step.directions }}</li>
+        <li>{{ step.directions }}</li>
       {% endfor %}
     </ol>
   </main>
