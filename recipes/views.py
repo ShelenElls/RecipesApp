@@ -5,6 +5,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from recipes.forms import RatingForm
 
+
 try:
     from recipes.forms import RecipeForm
     from recipes.models import Recipe
@@ -15,14 +16,14 @@ except Exception:
 
 class RecipeCreateView(CreateView):
     model = Recipe
-    template_name = "recipe/new.html"
+    template_name = "recipes/new.html"
     fields = ["name", "author", "description", "image"]
     success_url = reverse_lazy("recipes_list")
 
 
-class RecipeUpdateVeiw(UpdateView):
+class RecipeUpdateView(UpdateView):
     model = Recipe
-    template_name = "recipe/edit.html"
+    template_name = "recipes/edit.html"
     fields = ["name", "author", "description", "image"]
     success_url = reverse_lazy("recipes_list")
 
@@ -40,11 +41,12 @@ def log_rating(request, recipe_id):
 class RecipeListView(ListView):
     model = Recipe
     template_name = "recipes/list.html"
+    paginate_by = 3
 
 
 class RecipeDetailView(DetailView):
     model = Recipe
-    template_name = "recipes/details.html"
+    template_name = "recipes/detail.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -54,5 +56,5 @@ class RecipeDetailView(DetailView):
 
 class RecipeDeleteView(DeleteView):
     model = Recipe
-    template_name = "recipe/delete.html"
+    template_name = "recipes/delete.html"
     success_url = reverse_lazy("recipe_list")
