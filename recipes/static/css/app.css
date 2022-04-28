@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-html, button, select, textarea, input {
+html,
+button,
+select,
+textarea,
+input {
   font-family: 'Roboto';
   font-size: 16px;
 }
@@ -20,8 +24,8 @@ a:visited {
 
 button.button {
   background-color: #E012AD;
-  border: 2px solid transparent;
-  border-radius: 4px;
+  border: 0.5px solid transparent;
+  border-radius: 1px;
   color: white;
   padding: 1em 1.5em;
   text-transform: uppercase;
@@ -37,17 +41,19 @@ button.button:active {
   background-color: lightblue;
 }
 
-input, textarea {
-  border: 1px solid #E012AD;
-  border-radius: 4px;
+input,
+textarea {
+  border: 0.5px solid #E012AD;
+  border-radius: 3px;
   padding: 1em 1.5em;
 }
 
 table {
-  margin: auto;
+  margin: 10px 50px 20px 0;
 }
 
-td, th {
+td,
+th {
   padding: .25em .5em;
 }
 
@@ -57,7 +63,7 @@ textarea {
 
 .recipe-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2em;
   padding: 2em;
 }

@@ -2,14 +2,6 @@
 
 {% block content %}
 <main class="recipe-grid">
-  {% if user.is_authenticated %}
-  <div>
-    <h6>Add tags?</h6>
-    <p>
-      <a href="{% url 'tag_new' %}">New Tag</a>
-    </p>
-  </div>
-  {% endif %}
   {% for tag in tag_list %}
   <div class="recipe-card">
     <h2 class="recipe-card-title">
@@ -21,6 +13,14 @@
     </p>
     {% endfor %}
   </div>
+  {% if user.is_authenticated %}
+  <div>
+    <h5>Add tags?</h5>
+    <p>
+      <a href="{% url 'tag_new' %}">New Tag</a>
+    </p>
+  </div>
+  {% endif %}
   {% empty %}
   <div>
     <h1>No tags, yet</h1>

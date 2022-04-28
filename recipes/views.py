@@ -41,10 +41,14 @@ class RecipeDetailView(DetailView):
 class RecipeCreateView(LoginRequiredMixin, CreateView):
     model = Recipe
     template_name = "recipes/new.html"
-    fields = ["name", "description", "image"]
+    fields = [
+        "name",
+        "image",
+        "description",
+    ]
     success_url = reverse_lazy("recipes_list")
 
-    def form_valid(self, form):
+    def form_valid(self, fsssorm):
         form.instance.author = self.request.user
         return super().form_valid(form)
 

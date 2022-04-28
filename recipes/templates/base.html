@@ -18,10 +18,10 @@
                 <li>
                     <a href="{% url 'home' %}">All Recipes</a>
                 </li>
+                {% if user.is_authenticated %}
                 <li>
                     <a href="{% url 'recipe_new' %}">Write a recipe</a>
                 </li>
-                {% if user.is_authenticated %}
                 <li>
                     <a href="{% url 'logout' %}">Logout</a>
                 </li>
@@ -36,7 +36,7 @@
                 </li>
                 {% endif %}
                 <li>
-                    <a href="{% url 'tags_list' %}">Tags List</a>
+                    <a href="{% url 'tags_list' %}">Recipe By Tags</a>
                 </li>
                 {% block header_parent %} {% endblock %}
             </ul>
