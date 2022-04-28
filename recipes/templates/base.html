@@ -16,22 +16,35 @@
         <nav>
             <ul>
                 <li>
-                    <a href="{% url 'home' %}">Scrumptious</a>
-                </li>
-                <li>
-                    <a href="{% url 'tags_list' %}">Tags</a>
-                </li>
-                <li>
-                    <a href="{% url 'admin:index' %}">Admin</a>
+                    <a href="{% url 'home' %}">All Recipes</a>
                 </li>
                 <li>
                     <a href="{% url 'recipe_new' %}">Write a recipe</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}">Login</a>
+                </li>
+                {% endif %}
+                {% if user.is_staff %}
+                <li>
+                    <a href="{% url 'admin:index' %}">Admin</a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="{% url 'tags_list' %}">Tags List</a>
+                </li>
+                {% block header_parent %} {% endblock %}
             </ul>
         </nav>
     </header>
     {% block content %}
     {% endblock content %}
 </body>
+{% block pagination %} {% endblock pagination %}
 
 </html>
