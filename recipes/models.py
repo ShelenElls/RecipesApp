@@ -81,3 +81,10 @@ class Rating(models.Model):
         related_name="ratings",
         on_delete=models.CASCADE,
     )
+
+
+class Mealplan(models.Model):
+    user = models.ManyToManyField(USER_MODEL, related_name="MealPlan")
+    name = models.CharField(max_length=125)
+    description = models.TextField()
+    recipes = models.ManyToManyField("recipes.Recipe", related_name="recipes")

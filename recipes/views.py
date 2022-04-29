@@ -1,3 +1,4 @@
+from ast import Delete
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
