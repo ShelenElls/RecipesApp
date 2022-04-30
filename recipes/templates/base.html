@@ -25,12 +25,12 @@
                 <li>
                     <a href="{% url 'logout' %}">Logout</a>
                 </li>
+                <li>
+                    <a href="{% url 'foodplan_list' %}">Meal Plan's</a>
+                </li>
                 {% else %}
                 <li>
                     <a href="{% url 'login' %}">Login</a>
-                </li>
-                <li>
-                    <a href="{% url 'mealplan' %}">Meal Plan's</a>
                 </li>
                 {% endif %}
                 {% if user.is_staff %}
@@ -41,7 +41,6 @@
                 <li>
                     <a href="{% url 'tags_list' %}">Recipe By Tags</a>
                 </li>
-                {% block header_parent %} {% endblock %}
             </ul>
         </nav>
     </header>

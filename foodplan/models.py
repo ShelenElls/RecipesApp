@@ -10,10 +10,13 @@ USER_MODEL = settings.AUTH_USER_MODEL
 class MealPlan(models.Model):
     name = models.CharField(max_length=120)
     date = models.DateTimeField()
-    user = models.ManyToManyField(USER_MODEL, related_name="mealplan")
+    user = models.ForeignKey(
+        USER_MODEL, related_name="mealplan", on_delete=models.CASCADE, null=True
+    )
+    recipes = models.ManyToManyField("recipes.Recipe", related_name="recipe")
 
-    # def __str__(self):
-    #     description = str()
+    def __str__(self):
+        return str(self.name)
 
 
 # class Recipes(models.Model):

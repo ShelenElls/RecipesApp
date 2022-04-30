@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <main class="MealPlan">
     <form method="post">
         {% csrf_token %}
@@ -10,4 +11,5 @@
         </div>
     </form>
 </main>
+{% endblock content %}
 {% endblock %}

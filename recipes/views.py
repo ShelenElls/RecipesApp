@@ -26,7 +26,7 @@ class RecipeListView(ListView):
     model = Recipe
     template_name = "recipes/list.html"
     context_object_name = "recipe_list"
-    paginate_by = 2
+    paginate_by = 3
 
 
 class RecipeDetailView(DetailView):
@@ -49,9 +49,9 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
     ]
     success_url = reverse_lazy("recipes_list")
 
-    def form_valid(self, fsssorm):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+    # def form_valid(self, fsssorm):
+    #     form.instance.author = self.request.user
+    #     return super().form_valid(form)
 
 
 class RecipeUpdateView(UpdateView):
