@@ -11,7 +11,10 @@ class MealPlan(models.Model):
     name = models.CharField(max_length=120)
     date = models.DateTimeField()
     user = models.ForeignKey(
-        USER_MODEL, related_name="mealplan", on_delete=models.CASCADE, null=True
+        USER_MODEL,
+        related_name="mealplan",
+        on_delete=models.CASCADE,
+        null=False,
     )
     recipes = models.ManyToManyField("recipes.Recipe", related_name="recipe")
 

@@ -1,9 +1,7 @@
-<!-- create button on logged in page for food plans 'showing create button' needs to be adjusted. - does not link to create page 
--create page doesnt populate the recipes
+<!-- create button needs to populate the button css 
+-create page needs the css and layout fixed for grid
 -create page doesnt automatically assign it to the user
-
- -specifc food plans need to show what recipes are connected to them
- import or for loop for the recipes that are associated
+-pagination isnt working 
  -delete page needs to populate the name of the food plan 
  on the actual delete page instead of the quotes with no string 
  populated

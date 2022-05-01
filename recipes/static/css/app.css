@@ -33,7 +33,7 @@ button.button {
 
 button.button:hover {
   background-color: white;
-  border-color: #c97c17;
+  border-color: black;
   color: #c97c17;
 }
 
@@ -43,7 +43,7 @@ button.button:active {
 
 input,
 textarea {
-  border: 0.5px solid #c97c17;
+  border: 0.5px solid black;
   border-radius: 3px;
   padding: 1em 1.5em;
 }
@@ -107,11 +107,21 @@ textarea {
 .pull-right {
   float: right;
   margin: 1em;
-
 }
 
 .control {
   text-align: right;
+}
+
+img {
+  max-width: 300px;
+  max-height: 500px;
+  margin: auto;
+  display: block;
+  border: 0.5px solid;
+  border-radius: 5px;
+  color: black;
+  padding: 1em 1.5em;
 }
 
 .delete-form {

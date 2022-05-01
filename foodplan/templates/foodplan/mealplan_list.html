@@ -4,6 +4,10 @@
 
 {% block content %}
 <main class="recipe-grid">
+    <h2>A list of {{ mealplan.user }} meal plans!</h2>
+    <div class="control">
+        <a href="{% url 'foodplan_new' %}"><button class="button">Create Plan</button></a>
+    </div>
     {% for meal in mealplan_list %}
     <div class="recipe-card">
         <h2 class="recipe-card-title">
@@ -11,19 +15,14 @@
         </h2>
     </div>
     {% endfor %}
-    <div class="MealPlan">
-        <div class="control">
-            <a href="{% url 'foodplan_new' %}"><button>Create Plan</button></a>
-        </div>
-    </div>
 </main>
 {% endblock content %}
 {% block pagination %}
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
-        <a href="?page=1">&laquo; first</a>
-        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        <a href="page=1">&laquo; first</a>
+        <a href="page={{ page_obj.previous_page_number }}">previous</a>
         {% endif %}
 
         <span class="current">
@@ -31,8 +30,8 @@
         </span>
 
         {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">next</a>
-        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        <a href="page={{ page_obj.next_page_number }}">next</a>
+        <a href="page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
 </div>

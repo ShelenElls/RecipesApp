@@ -4,15 +4,19 @@
 
 {% block content %}
 <main class="recipe-detail">
-    <div>
-        <a href="{% url 'foodplan_edit' mealplan.id %}">Edit</a>
-        <a href="{% url 'foodplan_delete' mealplan.id %}">Delete</a>
-    </div>
     <h1>{{ mealplan.name }}</h1>
-    <p>Date plan is to be made: {{ mealplan.date }} </p>
-    <p>Recipes to use in plan:</p>
+    <p>Date plan is to be made:
+        <br> {{ mealplan.date }} </br>
+    </p>
+    <h3>Recipes to use in plan:</h3>
     {% for recipes in mealplan.recipes.all %}<p> </p>
     <a href="{% url 'recipe_detail' recipes.pk %}">{{ recipes.name }}</a>
     {% endfor %}
 </main>
+<footer>
+    <div>
+        <a href="{% url 'foodplan_edit' mealplan.id %}">Edit</a>
+        <a href="{% url 'foodplan_delete' mealplan.id %}">Delete</a>
+    </div>
+</footer>
 {% endblock content %}
