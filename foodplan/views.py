@@ -14,6 +14,9 @@ class MealplanListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return MealPlan.objects.filter(user=self.request.user)
 
+    def __str__(self):
+        return str(self.name)
+
 
 class MealplanDetailView(LoginRequiredMixin, DetailView):
     model = MealPlan
@@ -22,6 +25,9 @@ class MealplanDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
         return MealPlan.objects.filter(user=self.request.user)
 
+    def __str__(self):
+        return str(self.name)
+
 
 class MealplanCreateView(LoginRequiredMixin, CreateView):
     model = MealPlan
@@ -29,12 +35,16 @@ class MealplanCreateView(LoginRequiredMixin, CreateView):
     fields = [
         "name",
         "date",
+        "recipes",
     ]
-    success_url = reverse_lazy("foodplan_detail")
+    success_url = reverse_lazy("foodplan_list")
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def __str__(self):
+        return str(self.name)
 
 
 class MealplanUpdateView(LoginRequiredMixin, UpdateView):
@@ -42,15 +52,18 @@ class MealplanUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "foodplan/edit.html"
     fields = [
         "name",
-        "description",
+        "recipes",
         "date",
     ]
 
     def get_queryset(self):
-        return MealPlan.objects.filter(owner=self.request.user)
+        return MealPlan.objects.filter(user=self.request.user)
 
     def get_success_url(self) -> str:
-        return reverse_lazy("foodplan_list", args=[self.object.id])
+        return reverse_lazy("foodplan_detail", args=[self.object.id])
+
+    def __str__(self):
+        return str(self.name)
 
 
 class MealplanDeleteView(LoginRequiredMixin, DeleteView):
@@ -60,3 +73,6 @@ class MealplanDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self):
         return MealPlan.objects.filter(user=self.request.user)
+
+    def __str__(self):
+        return str(self.name)

@@ -6,7 +6,7 @@ select,
 textarea,
 input {
     font-family: 'Roboto';
-    font-size: 16px;
+    font-size: 12px
 }
 
 header nav ul {
@@ -23,18 +23,19 @@ a:visited {
 }
 
 button.button {
-    background-color: #E012AD;
+    background-color: #c97c17;
     border: 0.5px solid transparent;
     border-radius: 1px;
     color: white;
     padding: 1em 1.5em;
     text-transform: uppercase;
+
 }
 
 button.button:hover {
     background-color: white;
-    border-color: #E012AD;
-    color: #E012AD;
+    border-color: #c97c17;
+    color: #c97c17;
 }
 
 button.button:active {
@@ -43,7 +44,7 @@ button.button:active {
 
 input,
 textarea {
-    border: 0.5px solid #E012AD;
+    border: 0.5px solid #c97c17;
     border-radius: 3px;
     padding: 1em 1.5em;
 }
@@ -63,7 +64,7 @@ textarea {
 
 .recipe-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 2em;
     padding: 2em;
 }

@@ -28,10 +28,16 @@ class RecipeListView(ListView):
     context_object_name = "recipe_list"
     paginate_by = 3
 
+    def __str__(self):
+        return str(self.name)
+
 
 class RecipeDetailView(DetailView):
     model = Recipe
     template_name = "recipes/detail.html"
+
+    def __str__(self):
+        return str(self.name)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -49,6 +55,9 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
     ]
     success_url = reverse_lazy("recipes_list")
 
+    def __str__(self):
+        return str(self.name)
+
     # def form_valid(self, fsssorm):
     #     form.instance.author = self.request.user
     #     return super().form_valid(form)
@@ -60,8 +69,14 @@ class RecipeUpdateView(UpdateView):
     fields = ["name", "author", "description", "image"]
     success_url = reverse_lazy("recipes_list")
 
+    def __str__(self):
+        return str(self.name)
+
 
 class RecipeDeleteView(DeleteView):
     model = Recipe
     template_name = "recipes/delete.html"
     success_url = reverse_lazy("recipes_list")
+
+    def __str__(self):
+        return str(self.name)

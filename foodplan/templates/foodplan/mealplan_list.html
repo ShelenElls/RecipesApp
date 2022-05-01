@@ -1,6 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
+{% block content %}
+<main class="recipe-grid">
+    {% for meal in mealplan_list %}
+    <div class="recipe-card">
+        <h2 class="recipe-card-title">
+            <a href="{% url 'foodplan_detail' meal.pk %}">{{ meal.name }}</a>
+        </h2>
+    </div>
+    {% endfor %}
+    <div class="MealPlan">
+        <div class="control">
+            <a href="{% url 'foodplan_new' %}"><button>Create Plan</button></a>
+        </div>
+    </div>
+</main>
+{% endblock content %}
 {% block pagination %}
 <div class="pagination">
     <span class="step-links">
@@ -20,14 +37,3 @@
     </span>
 </div>
 {% endblock pagination %}
-{% block content %}
-<main class="recipe-grid">
-    {% for meal in mealplan_list %}
-    <div class="recipe-card">
-        <h2 class="recipe-card-title">
-            <a href="{% url 'foodplan_detail' meal.pk %}">{{ meal.name }}</a>
-        </h2>
-    </div>
-    {% endfor %}
-</main>
-{% endblock content %}

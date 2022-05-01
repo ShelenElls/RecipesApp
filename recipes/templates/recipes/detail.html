@@ -3,6 +3,7 @@
 
 {% block content %}
 <main class="recipe-detail">
+  <h1>{{ recipe.name }}</h1>
   <div>
     <a href="{% url 'recipe_edit' recipe.id %}">Edit</a>
     <a href="{% url 'recipe_delete' recipe.id %}">Delete</a>
@@ -10,11 +11,12 @@
   {% if recipe.image %}
   <img src="{{ recipe.image }}" class="pull-right">
   {% endif %}
-  <h1>{{ recipe.name }}</h1>
   <p>
     Created on {{ recipe.created }} |
     Updated on {{ recipe.updated }}
   </p>
+  <h5>By Author: {{ recipe.author | default_if_none:"Unknown" }}</h5>
+  <p><i>Rate this Recipe!</i></p>
   <form method="post" action="{% url 'recipe_rating' recipe.id %}">
     {% csrf_token %}
     <div class="rating-form-grid">
@@ -22,11 +24,10 @@
       <button class="button">Rate</button>
     </div>
   </form>
-  <h2>By: {{ recipe.author | default_if_none:"Unknown" }}</h2>
-  <p>Tags: {% for tag in recipe.tags.all %}{{ tag.word }} {% endfor %}</p>
+  <h5>Description:</h5>
   {{ recipe.description | markdownify }}
   <h3>Ingredients</h3>
-  <!-- <table>
+  <table>
     <thead>
       <tr>
         <th>Amount</th>
@@ -34,16 +35,16 @@
           <th>Food item</th>
         </p>
       </tr>
-    </thead> -->
-  <tbody>
-    {% for ingredient in recipe.ingredients.all %}
-    <tr>
-      <td>{{ ingredient.amount }}</td>
-      <td>{{ ingredient.measure.name }}</td>
-      <td>{{ ingredient.food.name }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
+    </thead>
+    <tbody>
+      {% for ingredient in recipe.ingredients.all %}
+      <tr>
+        <td>{{ ingredient.amount }}</td>
+        <td>{{ ingredient.measure.name }}</td>
+        <td>{{ ingredient.food.name }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
   </table>
   <h3>Steps</h3>
   <ol>
@@ -51,5 +52,6 @@
     <li>{{ step.directions }}</li>
     {% endfor %}
   </ol>
+  <p>Tags: {% for tag in recipe.tags.all %}{{ tag.word }} {% endfor %}</p>
 </main>
 {% endblock content %}

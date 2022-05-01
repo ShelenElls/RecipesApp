@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Recipe - Scrumptious</title>
-    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="/static/css/app.css?{% now " U" %}" />
 </head>
 
 <body>
@@ -23,10 +23,10 @@
                     <a href="{% url 'recipe_new' %}">Write a recipe</a>
                 </li>
                 <li>
-                    <a href="{% url 'logout' %}">Logout</a>
+                    <a href="{% url 'logout' %}">Logout </a>
                 </li>
                 <li>
-                    <a href="{% url 'foodplan_list' %}">Meal Plan's</a>
+                    <a href="{% url 'foodplan_list' %}">Meal's</a>
                 </li>
                 {% else %}
                 <li>

@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
-<!-- this page needs to have the new tag adjusted becau
-se it populates a new tag suggestion after EVERY tag -->
 {% block content %}
 <main class="recipe-grid">
+  {% if user.is_authenticated %}
+  <div>
+    <h5>Add tags?</h5>
+    <p>
+      <a href="{% url 'tag_new' %}">New Tag</a>
+    </p>
+  </div>
+  {% endif %}
   {% for tag in tag_list %}
   <div class="recipe-card">
     <h2 class="recipe-card-title">
@@ -14,14 +20,6 @@ se it populates a new tag suggestion after EVERY tag -->
     </p>
     {% endfor %}
   </div>
-  {% if user.is_authenticated %}
-  <div>
-    <h5>Add tags?</h5>
-    <p>
-      <a href="{% url 'tag_new' %}">New Tag</a>
-    </p>
-  </div>
-  {% endif %}
   {% empty %}
   <div>
     <h1>No tags, yet</h1>
