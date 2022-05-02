@@ -24,6 +24,7 @@
       <button class="button">Rate</button>
     </div>
   </form>
+  <p>Ratings: {% for y in recipe.ratings.all %} {{ y.value }}, {% endfor %}</p>
   <h5>Description:</h5>
   {{ recipe.description | markdownify }}
   <h3>Ingredients</h3>
@@ -52,6 +53,6 @@
     <li>{{ step.directions }}</li>
     {% endfor %}
   </ol>
-  <p>Tags: {% for tag in recipe.tags.all %}{{ tag.word }} {% endfor %}</p>
+  <p>Tags: {% for x in recipe.tags.all %} {{ x.name }} {% endfor %}</p>
 </main>
 {% endblock content %}

@@ -22,7 +22,6 @@ class Recipe(models.Model):
     def __str__(self):
         return str(self.name)
 
-
     # def __str__(self):
     #     return self.name + " by " + self.author
 
@@ -86,9 +85,30 @@ class Rating(models.Model):
         on_delete=models.CASCADE,
     )
 
+    def __str__(self):
+        return str(self.value)
+
 
 class Mealplan(models.Model):
     user = models.ManyToManyField(USER_MODEL, related_name="MealPlan")
     name = models.CharField(max_length=125)
     description = models.TextField()
     recipes = models.ManyToManyField("recipes.Recipe", related_name="recipes")
+
+
+# class Shopping_item(models.Model):
+#     owner = models.ForeignKey(
+#         USER_MODEL,
+#         related_name="shopping_item",
+#         on_delete=models.CASCADE,
+#         null=True,
+#     )
+#     food_item = models.ManyToManyField(
+#         "recipes.Ingredient", related_name="ingredient"
+#     )
+
+    # food_item = models.ForeignKey(
+    #     "recipes.Ingredient",
+    #     related_name="items.list",
+    #     on_delete=models.PROTECT,
+    # )

@@ -9,5 +9,8 @@ class RatingForm(forms.ModelForm):
         model = Rating
         fields = ["value"]
 
+    def __str__(self):
+        return str(self.name)
+
 
 USER_MODEL = settings.AUTH_USER_MODEL

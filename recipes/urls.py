@@ -7,6 +7,7 @@ from recipes.views import (
     log_rating,
     RecipeDetailView,
     RecipeListView,
+    # ShoppingItemListView,
 )
 
 urlpatterns = [
@@ -16,4 +17,9 @@ urlpatterns = [
     path("new/", RecipeCreateView.as_view(), name="recipe_new"),
     path("<int:pk>/edit/", RecipeUpdateView.as_view(), name="recipe_edit"),
     path("<int:recipe_id>/ratings/", log_rating, name="recipe_rating"),
+    # path(
+    #     "create/",
+    #     create_shopping_item,
+    #     name="shopping_item_create",
+    # ),
 ]

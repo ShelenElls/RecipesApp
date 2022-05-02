@@ -11,7 +11,7 @@ from tags.models import Tag
 class TagListView(ListView):
     model = Tag
     template_name = "tags/list.html"
-    paginate_by = 3
+    paginate_by = 4
 
     def __str__(self):
         return str(self.name)
@@ -30,7 +30,6 @@ class TagCreateView(LoginRequiredMixin, CreateView):
     template_name = "tags/new.html"
     fields = ["name", "recipes"]
     success_url = reverse_lazy("tags_list")
-
 
     def __str__(self):
         return str(self.name)
