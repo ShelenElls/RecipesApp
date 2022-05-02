@@ -28,6 +28,11 @@
                 <li>
                     <a href="{% url 'foodplan_list' %}">Meal's</a>
                 </li>
+                <li>
+                    <a href="{% url 'shopping_item_show' %}">
+                        Shop List ({{ owner.shopping_items.all|length }})
+                    </a>
+                </li>
                 {% else %}
                 <li>
                     <a href="{% url 'login' %}">Login</a>

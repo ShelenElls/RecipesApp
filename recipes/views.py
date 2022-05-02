@@ -43,25 +43,32 @@ class RecipeDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["rating_form"] = RatingForm()
-        #     foods = []
-        #     for item in self.request.user.shopping_items.all():
-        #         foods.append(item.food_item)
-        #     context["food_in_shopping_list"] = foods
-        #     return context
+        foods = []
+        print(f"here: {self.request.user.shopping_item}")
+        for item in self.request.user.shopping_item.all():
+            foods.append(item.food_item)
+        context["food_in_shopping_list"] = foods
+        return context
 
-        # @require_http_methods(["POST"])
-        # def create_shopping_item(request):
-        #     ingredient_id = request.POST.get("ingredient_id")
-        #     ingredient = Ingredient.objects.get(id=ingredient_id)
-        #     user = request.user
-        #     try:
-        #         Shopping_item.objects.create(
-        #             food_item=ingredient.food,
-        #             user=user,
-        #         )
-        #     except IntegrityError:
-        #         pass
-        return redirect("recipe_detail", pk=ingredient.recipe.id)
+
+@require_http_methods(["POST"])
+def create_shopping_item(request, ingredient_id):
+    ingredient_id = request.POST.get("ingredient_id")
+    ingredient = Ingredient.objects.get(id=ingredient_id)
+    user = request.owner
+    try:
+        Shopping_item.objects.create(
+            food_item=ingredient.food,
+            user=user,
+        )
+    except IntegrityError:
+        pass
+    return redirect("recipe_detail", pk=ingredient.recipe.id)
+
+
+def delete_all_shopping_items(request):
+    Shopping_item.objects.filter(user=request.user).delete()
+    return redirect("shopping_item_list")
 
 
 class RecipeCreateView(LoginRequiredMixin, CreateView):
@@ -106,4 +113,4 @@ class ShoppingItemListView(LoginRequiredMixin, ListView):
     template_name = "shopping_items/list.html"
 
     def get_queryset(self):
-        return Shopping_item.objects.filter(owner=self.request.user)
+        return Shopping_item.objects.filter(user=self.request.user)
