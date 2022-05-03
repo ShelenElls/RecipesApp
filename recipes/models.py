@@ -18,6 +18,17 @@ class Recipe(models.Model):
     image = models.URLField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    servings = models.PositiveIntegerField(null=True)
+    ingredient = models.ManyToManyField(
+        "Ingredient",
+        related_name="recipes",
+        null=False,
+    )
+    steps = models.ManyToManyField(
+        "Step",
+        related_name="recip",
+        null=False,
+    )
 
     def __str__(self):
         return str(self.name)
@@ -61,7 +72,7 @@ class Ingredient(models.Model):
 class Step(models.Model):
     recipe = models.ForeignKey(
         "Recipe",
-        related_name="steps",
+        related_name="step",
         on_delete=models.CASCADE,
     )
     order = models.PositiveSmallIntegerField()
@@ -99,11 +110,16 @@ class Rating(models.Model):
 class Shopping_item(models.Model):
     user = models.ForeignKey(
         USER_MODEL,
-        related_name="shopping_item",
+        related_name="shopping_items",
         on_delete=models.CASCADE,
         null=True,
     )
-    food_item = models.ManyToManyField(
-        "recipes.Ingredient", related_name="ingredient"
+    food_item = models.ForeignKey(
+        "FoodItem",
+        related_name="FoodItem",
+        on_delete=models.PROTECT,
+        null=True,
     )
 
+    def __str__(self):
+        return str(self.food_item)

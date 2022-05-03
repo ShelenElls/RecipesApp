@@ -1,6 +1,14 @@
 from django.contrib import admin
 
-from recipes.models import Recipe, Measure, FoodItem, Ingredient, Step, Rating
+from recipes.models import (
+    Recipe,
+    Measure,
+    FoodItem,
+    Ingredient,
+    Step,
+    Rating,
+    Shopping_item,
+)
 
 
 # Register your models here.
@@ -28,6 +36,11 @@ class RatingAdmin(admin.ModelAdmin):
     pass
 
 
+class Shopping_itemAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Shopping_item, Shopping_itemAdmin),
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(Measure, MeasureAdmin)
 admin.site.register(FoodItem, FoodItemAdmin)

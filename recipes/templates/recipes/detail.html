@@ -43,11 +43,13 @@
         <td>{{ ingredient.amount }}</td>
         <td>{{ ingredient.measure.name }}</td>
         <td>{{ ingredient.food.name }}</td>
-        {% if ingredient.food is not food_in_shopping_list %}
-        <td> not in list </td>
-        {% else %}
-        <td> 'in a list' </td>
-        {% endif %}
+        <td>
+          <form method="POST" action="{% url 'shopping_create' %}">
+            {% csrf_token %}
+            <input type="hidden" name="ingredient_id" value="{{ ingredient.id }}">
+            <button>+ shopping list</button>
+          </form>
+        </td>
       </tr>
       {% endfor %}
     </tbody>

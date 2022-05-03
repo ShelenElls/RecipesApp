@@ -6,8 +6,9 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from recipes.forms import RatingForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from recipes.models import Ingredient, Recipe, Shopping_item
+from recipes.models import Ingredient, Recipe, Shopping_item, Step
 from django.views.decorators.http import require_http_methods
+from psycopg2 import IntegrityError
 
 
 def log_rating(request, recipe_id):
@@ -44,18 +45,17 @@ class RecipeDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["rating_form"] = RatingForm()
         foods = []
-        print(f"here: {self.request.user.shopping_item}")
-        for item in self.request.user.shopping_item.all():
+        for item in self.request.user.shopping_items.all():
             foods.append(item.food_item)
         context["food_in_shopping_list"] = foods
         return context
 
 
 @require_http_methods(["POST"])
-def create_shopping_item(request, ingredient_id):
+def create_shopping_item(request):
     ingredient_id = request.POST.get("ingredient_id")
     ingredient = Ingredient.objects.get(id=ingredient_id)
-    user = request.owner
+    user = request.user
     try:
         Shopping_item.objects.create(
             food_item=ingredient.food,
@@ -68,7 +68,7 @@ def create_shopping_item(request, ingredient_id):
 
 def delete_all_shopping_items(request):
     Shopping_item.objects.filter(user=request.user).delete()
-    return redirect("shopping_item_list")
+    return redirect("shopping_item/list")
 
 
 class RecipeCreateView(LoginRequiredMixin, CreateView):
@@ -78,6 +78,9 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
         "name",
         "image",
         "description",
+        "ingredient",
+        "servings",
+        "steps",
     ]
     success_url = reverse_lazy("recipes_list")
 

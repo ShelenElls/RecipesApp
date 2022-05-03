@@ -3,4 +3,12 @@
  -css and html adjustments need to be made for the size of the box for value and rating
  - would be useful to have a button on the recipe detail page that adds the recipe to the meal plan 
  - list view on recipes should populate a small image of the actual recipe 
+
+-INGREDIENTS IS NOT WORKING - ingredients button not a manageable field in create recipe- neither is steps. needs to be adjusted for the shopping list 
+ ---------------------------------------------------------
+
+ shopping list
+research on tables! 
+
+
  -->
