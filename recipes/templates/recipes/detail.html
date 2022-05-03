@@ -16,7 +16,7 @@
     Updated on {{ recipe.updated }}
   </p>
   <h5>By Author: {{ recipe.author | default_if_none:"Unknown" }}</h5>
-  <p><i>Rate this Recipe!</i></p>
+  <p><i>Rate this Recipe! 1 - 5</i></p>
   <form method="post" action="{% url 'recipe_rating' recipe.id %}">
     {% csrf_token %}
     <div class="rating-form-grid">

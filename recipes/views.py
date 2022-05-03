@@ -16,7 +16,7 @@ def log_rating(request, recipe_id):
         form = RatingForm(request.POST)
         try:
             form.is_valid()
-            rating = form.save(commit=True)
+            rating = form.save(commit=False)
             rating.recipe = Recipe.objects.get(pk=recipe_id)
             rating.save()
         except Recipe.DoesNotExist:
